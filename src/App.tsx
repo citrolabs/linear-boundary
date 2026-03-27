@@ -8,105 +8,105 @@ import { TypingText } from './components/TypingText';
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const HERO_SUBTITLES = [
-  'Create issues from natural language',
-  'Auto-assign tasks with context',
-  'Draft PRs while you sleep',
-  'Ship faster with AI at every step',
+  '用自然语言创建任务',
+  '智能分配任务与上下文',
+  '在你休息时自动创建 PR',
+  '让 AI 驱动每一步，更快发布',
 ];
 
 const TERMINAL_ISSUE = [
-  { type: 'comment' as const, text: 'linear-boundary workspace', delay: 300 },
+  { type: 'comment' as const, text: 'linear-boundary 工作区', delay: 300 },
   { type: 'prompt' as const, text: 'linear issue create', delay: 600 },
-  { type: 'ai' as const, text: 'Describe what you want to build...', delay: 400 },
-  { type: 'output' as const, text: '"Add dark mode support to dashboard"', delay: 600 },
-  { type: 'ai' as const, text: 'Analyzing codebase context...', delay: 800 },
-  { type: 'ai' as const, text: 'Found 12 related files · Priority: Medium', delay: 500 },
-  { type: 'success' as const, text: 'Issue CITRO-847 created', delay: 400 },
-  { type: 'success' as const, text: 'Sub-issues generated: 4 tasks', delay: 300 },
-  { type: 'success' as const, text: 'Assigned to: Team AI · Sprint 23', delay: 300 },
+  { type: 'ai' as const, text: '描述你想要构建的内容……', delay: 400 },
+  { type: 'output' as const, text: '"为仪表板添加深色模式支持"', delay: 600 },
+  { type: 'ai' as const, text: '正在分析代码库上下文……', delay: 800 },
+  { type: 'ai' as const, text: '找到 12 个相关文件 · 优先级：中等', delay: 500 },
+  { type: 'success' as const, text: '任务 CITRO-847 已创建', delay: 400 },
+  { type: 'success' as const, text: '已生成子任务：4 项', delay: 300 },
+  { type: 'success' as const, text: '已分配至：Team AI · Sprint 23', delay: 300 },
 ];
 
 const TERMINAL_AGENT = [
-  { type: 'comment' as const, text: 'Background agent — CITRO-831', delay: 300 },
-  { type: 'ai' as const, text: 'Reading issue context...', delay: 700 },
-  { type: 'ai' as const, text: 'Cloning repo & installing deps...', delay: 600 },
+  { type: 'comment' as const, text: '后台代理 — CITRO-831', delay: 300 },
+  { type: 'ai' as const, text: '正在读取任务上下文……', delay: 700 },
+  { type: 'ai' as const, text: '正在克隆仓库并安装依赖……', delay: 600 },
   { type: 'prompt' as const, text: 'git checkout -b feat/CITRO-831-auth-flow', delay: 500 },
-  { type: 'ai' as const, text: 'Implementing OAuth2 login flow...', delay: 1200 },
-  { type: 'ai' as const, text: 'Writing unit tests (coverage: 94%)...', delay: 900 },
+  { type: 'ai' as const, text: '正在实现 OAuth2 登录流程……', delay: 1200 },
+  { type: 'ai' as const, text: '正在编写单元测试（覆盖率：94%）……', delay: 900 },
   { type: 'prompt' as const, text: 'git push origin feat/CITRO-831-auth-flow', delay: 500 },
-  { type: 'success' as const, text: 'PR #142 opened · Ready for review', delay: 400 },
-  { type: 'success' as const, text: 'Issue CITRO-831 → In Review', delay: 300 },
+  { type: 'success' as const, text: 'PR #142 已创建 · 等待代码审查', delay: 400 },
+  { type: 'success' as const, text: '任务 CITRO-831 → 审查中', delay: 300 },
 ];
 
 const WORKFLOW_STEPS = [
   {
     icon: '💬',
-    label: 'Describe in natural language',
-    description: 'Type what you need in plain Chinese or English — Linear AI understands intent.',
+    label: '用自然语言描述',
+    description: '输入你的需求，中英文均可——Linear AI 理解你的意图。',
     color: 'bg-violet-500/20',
   },
   {
     icon: '🧠',
-    label: 'AI enriches the issue',
-    description: 'Context, priority, assignee, and sub-tasks are generated automatically.',
+    label: 'AI 完善任务内容',
+    description: '自动生成上下文、优先级、负责人和子任务。',
     color: 'bg-blue-500/20',
   },
   {
     icon: '🤖',
-    label: 'Background agent picks it up',
-    description: 'An autonomous agent reads the issue, writes code, and opens a PR.',
+    label: '后台代理自动接手',
+    description: '自主代理读取任务、编写代码并创建 PR。',
     color: 'bg-indigo-500/20',
   },
   {
     icon: '✅',
-    label: 'Review & merge',
-    description: 'You review the diff, approve, and the issue closes automatically.',
+    label: '审查并合并',
+    description: '你审查差异、批准后，任务自动关闭。',
     color: 'bg-emerald-500/20',
   },
 ];
 
 const ISSUES_SPRINT = [
-  { id: 'CITRO-851', title: 'Implement AI-powered search autocomplete', status: 'done' as const, priority: 'high' as const, assignee: 'AI', label: 'feat', aiGenerated: true },
-  { id: 'CITRO-852', title: 'Refactor authentication middleware', status: 'done' as const, priority: 'high' as const, assignee: 'Alex', label: 'refactor' },
-  { id: 'CITRO-853', title: 'Add real-time collaboration cursor sync', status: 'in-progress' as const, priority: 'urgent' as const, assignee: 'AI', label: 'feat', aiGenerated: true },
-  { id: 'CITRO-854', title: 'Fix memory leak in event listener cleanup', status: 'in-progress' as const, priority: 'high' as const, assignee: 'Sam', label: 'bug' },
-  { id: 'CITRO-855', title: 'Generate API documentation from types', status: 'todo' as const, priority: 'medium' as const, assignee: 'AI', label: 'docs', aiGenerated: true },
-  { id: 'CITRO-856', title: 'Optimize bundle size with tree shaking', status: 'todo' as const, priority: 'medium' as const, assignee: 'Jordan', label: 'perf' },
+  { id: 'CITRO-851', title: '实现 AI 驱动的搜索自动补全', status: 'done' as const, priority: 'high' as const, assignee: 'AI', label: 'feat', aiGenerated: true },
+  { id: 'CITRO-852', title: '重构身份验证中间件', status: 'done' as const, priority: 'high' as const, assignee: 'Alex', label: 'refactor' },
+  { id: 'CITRO-853', title: '添加实时协作光标同步', status: 'in-progress' as const, priority: 'urgent' as const, assignee: 'AI', label: 'feat', aiGenerated: true },
+  { id: 'CITRO-854', title: '修复事件监听器清理中的内存泄漏', status: 'in-progress' as const, priority: 'high' as const, assignee: 'Sam', label: 'bug' },
+  { id: 'CITRO-855', title: '从类型定义生成 API 文档', status: 'todo' as const, priority: 'medium' as const, assignee: 'AI', label: 'docs', aiGenerated: true },
+  { id: 'CITRO-856', title: '使用 Tree Shaking 优化打包体积', status: 'todo' as const, priority: 'medium' as const, assignee: 'Jordan', label: 'perf' },
 ];
 
 const FEATURES = [
   {
     icon: '✦',
-    title: 'Issue Intelligence',
+    title: '任务智能化',
     description:
-      'Paste a Slack message, a bug report, or a vague idea. Linear AI breaks it into structured issues with context, priority, and assignments.',
+      '粘贴 Slack 消息、Bug 报告或模糊想法，Linear AI 将其转化为带有上下文、优先级和分配信息的结构化任务。',
     color: 'from-violet-500/10 to-violet-500/0',
     borderColor: 'border-violet-500/20',
     iconColor: 'text-violet-400',
   },
   {
     icon: '⚡',
-    title: 'Instant Sprint Planning',
+    title: '即时迭代规划',
     description:
-      'AI estimates velocity, suggests backlog items, and auto-schedules sprints based on your team\'s historical delivery patterns.',
+      'AI 根据团队历史交付规律估算速率、推荐待办事项并自动安排迭代计划。',
     color: 'from-blue-500/10 to-blue-500/0',
     borderColor: 'border-blue-500/20',
     iconColor: 'text-blue-400',
   },
   {
     icon: '🔁',
-    title: 'Background Agents',
+    title: '后台代理',
     description:
-      'Autonomous agents run in the background, picking up issues, writing code, and opening PRs while you focus on high-leverage decisions.',
+      '自主代理在后台运行，接手任务、编写代码并创建 PR，让你专注于高价值决策。',
     color: 'from-indigo-500/10 to-indigo-500/0',
     borderColor: 'border-indigo-500/20',
     iconColor: 'text-indigo-400',
   },
   {
     icon: '📊',
-    title: 'Project Insights',
+    title: '项目洞察',
     description:
-      'Ask questions like "Why did we miss the deadline?" or "Which engineer is overloaded?" and get honest, data-driven answers.',
+      '提问"我们为何错过截止日期？"或"哪位工程师超负荷？"，获得诚实的数据驱动分析。',
     color: 'from-cyan-500/10 to-cyan-500/0',
     borderColor: 'border-cyan-500/20',
     iconColor: 'text-cyan-400',
@@ -181,16 +181,16 @@ export default function App() {
           <span className="font-semibold text-white text-sm tracking-tight">Linear Boundary</span>
         </div>
         <div className="hidden md:flex items-center gap-6 text-sm text-slate-500">
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#workflow" className="hover:text-white transition-colors">Workflow</a>
-          <a href="#sprint" className="hover:text-white transition-colors">Sprint</a>
+          <a href="#features" className="hover:text-white transition-colors">功能特性</a>
+          <a href="#workflow" className="hover:text-white transition-colors">工作流程</a>
+          <a href="#sprint" className="hover:text-white transition-colors">迭代看板</a>
           <a
             href="https://linear.app"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-lg bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.10] transition-all text-xs"
           >
-            Open Linear ↗
+            打开 Linear ↗
           </a>
         </div>
       </nav>
@@ -200,21 +200,21 @@ export default function App() {
         <FadeIn>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-mono mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-            Linear × AI — The Self-Driving Workflow
+            Linear × AI — 自动驾驶工作流
           </div>
         </FadeIn>
 
         <FadeIn delay={0.1}>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white leading-[1.08] mb-6 max-w-4xl mx-auto">
-            Ship faster with{' '}
-            <span className="gradient-text">AI at every step</span>
+            更快发布，借助{' '}
+            <span className="gradient-text">AI 驱动每一步</span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
-            From vague idea to merged PR — Linear AI handles the planning,
-            context, and execution so your team can focus on what matters.
+            从模糊想法到合并 PR——Linear AI 处理规划、上下文和执行，
+            让你的团队专注于真正重要的事。
           </p>
         </FadeIn>
 
@@ -232,13 +232,13 @@ export default function App() {
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30"
             >
-              Get started with Linear
+              立即开始使用 Linear
             </a>
             <a
               href="#workflow"
               className="px-6 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.10] font-medium text-sm transition-all duration-200"
             >
-              See how it works ↓
+              查看工作原理 ↓
             </a>
           </div>
         </FadeIn>
@@ -249,13 +249,12 @@ export default function App() {
       {/* ── Features ── */}
       <Section id="features" className="py-24">
         <FadeIn className="text-center mb-16">
-          <div className="text-xs font-mono text-violet-400 mb-3 tracking-widest uppercase">Capabilities</div>
+          <div className="text-xs font-mono text-violet-400 mb-3 tracking-widest uppercase">核心能力</div>
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
-            AI woven into your workflow
+            AI 融入你的每个工作环节
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Not a chatbot bolted on the side — intelligence built into every step
-            of how your team plans, builds, and ships.
+            不是附加的聊天机器人——智能融入团队规划、开发和发布的每一个步骤。
           </p>
         </FadeIn>
 
@@ -277,13 +276,12 @@ export default function App() {
       {/* ── Terminal demos ── */}
       <Section className="py-24">
         <FadeIn className="text-center mb-16">
-          <div className="text-xs font-mono text-blue-400 mb-3 tracking-widest uppercase">Live demos</div>
+          <div className="text-xs font-mono text-blue-400 mb-3 tracking-widest uppercase">实时演示</div>
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
-            Watch AI work in real time
+            实时观看 AI 工作
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            These animated sequences show the actual interactions that happen
-            when Linear AI processes your team's issues.
+            这些动画演示展示了 Linear AI 处理团队任务时的真实交互过程。
           </p>
         </FadeIn>
 
@@ -291,12 +289,11 @@ export default function App() {
           <FadeIn delay={0.1}>
             <div>
               <div className="text-xs font-mono text-violet-400 mb-3 uppercase tracking-widest">
-                ✦ Issue Creation
+                ✦ 创建任务
               </div>
-              <Terminal title="linear — create issue" lines={TERMINAL_ISSUE} />
+              <Terminal title="linear — 创建任务" lines={TERMINAL_ISSUE} />
               <p className="text-xs text-slate-600 mt-3 leading-relaxed">
-                Describe in plain language. AI generates structured issues, 
-                sub-tasks, and assignments in seconds.
+                用自然语言描述，AI 在秒内生成结构化任务、子任务和分配信息。
               </p>
             </div>
           </FadeIn>
@@ -304,12 +301,11 @@ export default function App() {
           <FadeIn delay={0.2}>
             <div>
               <div className="text-xs font-mono text-blue-400 mb-3 uppercase tracking-widest">
-                ⚡ Background Agent
+                ⚡ 后台代理
               </div>
               <Terminal title="agent — feat/CITRO-831" lines={TERMINAL_AGENT} />
               <p className="text-xs text-slate-600 mt-3 leading-relaxed">
-                Autonomous agents pick up issues, write code with full context,
-                and open PRs while your team is offline.
+                自主代理接手任务、在完整上下文中编写代码，并在团队离线时创建 PR。
               </p>
             </div>
           </FadeIn>
@@ -323,21 +319,20 @@ export default function App() {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <FadeIn direction="right">
             <div className="text-xs font-mono text-emerald-400 mb-3 tracking-widest uppercase">
-              End-to-end flow
+              端到端流程
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
-              From idea to merged PR,<br />
-              <span className="gradient-text">fully automated</span>
+              从想法到合并 PR，<br />
+              <span className="gradient-text">全程自动化</span>
             </h2>
             <p className="text-slate-500 leading-relaxed mb-8">
-              The traditional path from idea to shipped feature involves dozens
-              of manual steps. Linear AI compresses this into a conversation.
+              从想法到发布功能的传统流程包含数十个手动步骤。Linear AI 将这一切压缩为一次对话。
             </p>
 
             <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-emerald-400">
                 <span>✓</span>
-                <span>Average: 4× faster delivery</span>
+                <span>平均交付速度提升 4 倍</span>
               </div>
             </div>
           </FadeIn>
@@ -353,13 +348,13 @@ export default function App() {
       {/* ── Sprint board ── */}
       <Section id="sprint" className="py-24">
         <FadeIn className="text-center mb-12">
-          <div className="text-xs font-mono text-indigo-400 mb-3 tracking-widest uppercase">Sprint Board</div>
+          <div className="text-xs font-mono text-indigo-400 mb-3 tracking-widest uppercase">迭代看板</div>
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
-            AI-assisted sprint, in action
+            AI 辅助迭代，实时进行
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Issues marked <span className="text-violet-400 font-mono text-xs bg-violet-500/10 px-1.5 py-0.5 rounded">AI</span> were
-            created, estimated, and partially implemented by Linear AI agents.
+            标有 <span className="text-violet-400 font-mono text-xs bg-violet-500/10 px-1.5 py-0.5 rounded">AI</span> 标记的任务由
+            Linear AI 代理创建、估算并部分实现。
           </p>
         </FadeIn>
 
@@ -371,8 +366,8 @@ export default function App() {
             viewport={{ once: true }}
             className="flex items-center justify-between px-3 py-2 text-xs text-slate-600 font-mono border-b border-white/[0.05] mb-3"
           >
-            <span>Sprint 23 · Dec 11 – Dec 24</span>
-            <span className="text-violet-400">6 issues · 34 pts</span>
+            <span>Sprint 23 · 12月11日 – 12月24日</span>
+            <span className="text-violet-400">6 个任务 · 34 分</span>
           </motion.div>
 
           {ISSUES_SPRINT.map((issue, i) => (
@@ -389,12 +384,12 @@ export default function App() {
           <div className="max-w-2xl mx-auto">
             <div className="text-4xl mb-6">✦</div>
             <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
-              The self-driving codebase<br />
-              starts with one issue
+              自动驾驶代码库<br />
+              从一个任务开始
             </h2>
             <p className="text-slate-500 mb-10 leading-relaxed">
-              Linear AI doesn't replace your engineering team — it amplifies them.
-              Less coordination overhead, more time building what matters.
+              Linear AI 不会取代你的工程团队——而是为他们赋能。
+              减少协调开销，将更多时间用于构建真正重要的内容。
             </p>
             <a
               href="https://linear.app"
@@ -402,7 +397,7 @@ export default function App() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white font-medium transition-all duration-200 shadow-xl shadow-violet-500/20"
             >
-              Start building with Linear AI
+              开始使用 Linear AI 构建
               <span>→</span>
             </a>
           </div>
@@ -418,7 +413,7 @@ export default function App() {
             </div>
             <span>Linear Boundary</span>
           </div>
-          <p>Built to explore Linear's AI capabilities · {new Date().getFullYear()}</p>
+          <p>专为探索 Linear 的 AI 能力而构建 · {new Date().getFullYear()}</p>
           <div className="flex gap-4">
             <a href="https://linear.app" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors">
               Linear ↗
